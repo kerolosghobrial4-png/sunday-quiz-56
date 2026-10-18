@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build-id" content="mu3uwn06">
+<meta name="build-id" content="mveel6tw">
 <title>Raising of Incense and the Offering Quiz — St. Stephen Deacons School</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,6 +111,7 @@ input[type=text]::placeholder{color:rgba(154,163,190,.5);font-weight:400}
   color:rgba(154,163,190,.4);padding:6px;align-self:center;transition:color .15s}
 .teach:hover{color:var(--brass)}
 .note{font-size:12px;line-height:1.6;color:rgba(154,163,190,.75);text-align:center}
+.stamp{font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.45;margin-top:2px}
 
 @media print{
   body{background:#fff;color:#000;background-image:none;padding:20px}
@@ -130,7 +131,23 @@ input[type=text]::placeholder{color:rgba(154,163,190,.5);font-weight:400}
 const SHEET_URL   = "https://script.google.com/macros/s/AKfycbwk8v1AQwkpXZaagZaPranztjCG1kuszoDQwUQCOq1f0gvzG-r4jeiNadzT8sEwmV1s/exec";
 const TEACHER_CODE = "stephen";
 const CLASS_LEVEL = "5-6";
-const STORE_KEY="ssquiz_"+"raisingofincenseandtheofferingquiz"+"_"+"mu3uwn06";
+// The build this copy of the page was generated from.
+const BUILD_ID = "mveel6tw";
+// The build actually being shown. Usually the same, but if GitHub's CDN handed
+// out a stale copy of this page, ACTIVE_BUILD is the newer one we pulled in.
+let ACTIVE_BUILD = BUILD_ID;
+
+// A build id is Date.now() in base 36, so it decodes back to the publish time.
+function whenOf(id){
+  try {
+    const d = new Date(parseInt(id, 36));
+    if (isNaN(d.getTime())) return "";
+    return d.toLocaleDateString(undefined, { month:'short', day:'numeric' }) +
+           ", " + d.toLocaleTimeString(undefined, { hour:'numeric', minute:'2-digit' });
+  } catch(e) { return ""; }
+}
+const STORE_BASE="ssquiz_"+"raisingofincenseandtheofferingquiz";
+let STORE_KEY=STORE_BASE+"_"+ACTIVE_BUILD;
 
 function loadResults(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY)||"[]"); }catch(e){ return []; } }
 function saveResult(rec){
@@ -184,14 +201,18 @@ function buildDoc(){
   w.document.write(body); w.document.close();
 }
 
-const QUIZ = [{"q":"What is the name of the hymn the deacons chant while the priest goes around the church?","o":["The Verses of Cymbals","The Doxologies","The Creed","The Litanies"],"a":1,"why":"While the priest processes around the church, the deacons are chanting the Doxologies."},{"q":"What does the word \"Doxology\" mean?","o":["A prayer for the sick","A reading from the Bible","Glorification","A blessing"],"a":2,"why":"The Doxologies are chants of glorification."},{"q":"Who does the priest give incense to first when he begins the procession?","o":["The people","The Katamaros","The deacons","The altar"],"a":1,"why":"He gives incense to the Katamaros first, then to fellow clergy, then starts the procession around the church."},{"q":"After the Katamaros, who does the priest give incense to next?","o":["The children","The women's side","His fellow clergy","Nobody"],"a":2,"why":"He gives incense to the Katamaros, then fellow clergy, and then begins going around the church."},{"q":"What shape does the priest give incense in during the procession?","o":["A circle","A triangle","A cross","A straight line"],"a":2,"why":"He gives incense in the cross shape, then returns towards the middle."},{"q":"Where does the priest end up at the end of the procession?","o":["The women's side","The men's side","The church door","The altar"],"a":3,"why":"He goes South and back west and through the central door all the way to the altar."},{"q":"How many tunes are the Doxologies chanted in?","o":["2","3","5","7"],"a":2,"why":"There are 5 tunes: Standard, Kiahk, Festive, Palm Sunday, and Lenten."},{"q":"Which of these is one of the tunes used for the Doxologies?","o":["Christmas tune","Palm Sunday tune","Easter tune","Wedding tune"],"a":1,"why":"The 5 tunes are Standard, Kiahk, Festive, Palm Sunday, and Lenten."},{"q":"The Doxologies are chanted for St. Mary, the angels, the martyrs, and the saints. What order are they in?","o":["Alphabetical order","Newest saints first","The same order as the Verses of Cymbals","A different order every week"],"a":2,"why":"They are chanted in the same order as the Verses of Cymbals."},{"q":"In Vespers, what comes right before the Doxologies themselves?","o":["The Gospel","The Litanies","The Introduction to the Doxologies (Hail to You)","The Verses of Cymbals"],"a":2,"why":"In Vespers the order is Graciously Accord O Lord, the Trisagion, Our Father, the Introduction to the Doxologies (Hail to You), and then the Doxologies."}];
+// The questions this page was built with. GitHub's CDN can serve a stale copy
+// of index.html for up to 10 minutes after publishing, so treat these as a
+// fallback, not as the truth. boot() below replaces them when it can.
+const QUIZ_EMBEDDED = [{"q":"What do the people chant right after the Creed?","o":["Evnoti Nai Nan","\"We look for the Resurrection\" (Ten gosht evol)","Amen Kerielison","The Doxologies"],"a":1,"why":"After the Introduction to the Creed and the Creed, the people chant \"We look for the Resurrection\" (Ten gosht evol) with a special tune."},{"q":"What does the priest hold in his hand while the deacon says \"Ten Gosht\"?","o":["The censer","The Gospel","A cross with 3 lighted candles on it","A small veil"],"a":2,"why":"The priest holds a cross with 3 lighted candles and signs the people with it for the blessing."},{"q":"How many times does the priest sign the people with the cross during \"Ten Gosht\"?","o":["Once","Twice","3 times","5 times"],"a":2,"why":"While the deacon says \"Ten Gosht,\" the priest signs with the cross 3 times to the people for the blessing."},{"q":"What does the cross with 3 lit candles show us?","o":["The 3 days in the tomb","The work of the cross is light and life for the world","The 3 Wise Men","The 3 prayers of the day"],"a":1,"why":"The priest holding the cross with 3 lit candles indicates that the work of the cross is light and life for the world."},{"q":"What does \"Evnoti Nai Nan\" mean?","o":["We look for the Resurrection","Glory be to You","O God, have mercy","Peace be with you"],"a":2,"why":"The priest turns to the east and says \"O God, have mercy\" (Evnoti Nai Nan) with supplications for himself and his people."},{"q":"Which direction does the priest face when he begins Evnoti Nai Nan?","o":["West","North","South","East"],"a":3,"why":"The priest turns his face to the east and says \"O God, have mercy\" (Evnoti Nai Nan)."},{"q":"Why does the priest turn in all directions holding the cross during these requests?","o":["To bless each of the icons","To show that the work of Christ is salvation; with the cross, he embraced the whole world","To look for the deacons","To spread the incense"],"a":1,"why":"The priest rotates in all directions holding the cross as an indication that the work of Christ is salvation. With the cross, he embraced the whole world."},{"q":"What do the deacons chant after Evnoti Nai Nan?","o":["Amen Kerielison (3 times)","Ten gosht evol","The Doxologies","The Creed"],"a":0,"why":"The deacons then chant Amen Kerielison 3 times in its tune."},{"q":"On weekdays of Jonah's Fast and Great Lent (Matins), what is said after Evnoti Nai Nan?","o":["The Resurrection procession","The prophecies","The procession with a Gospel in front of the icons","Nothing extra"],"a":1,"why":"On Jonah's Fast and Great Lent weekdays, the prophecies are said here."},{"q":"Why are the church lights turned off while the prophecies are read?","o":["To save the candles","So everyone can sleep","They remind us of the darkness we were in before Christ came, because the prophecies represent the Old Testament","Because it is nighttime"],"a":2,"why":"Turning off the lights refers to the darkness we were in before the advent of Christ, because the prophecies represent the Old Testament."},{"q":"During the Litany of the Gospel, where does the deacon hold the Gospel and the Cross?","o":["On the altar","In front of his chest","Behind the priest, on top of his head","In front of the door of the temple"],"a":2,"why":"The deacon holds the Gospel and the Cross behind the priest and places them on top of his head."},{"q":"After the Litany of the Gospel, the deacon and priest go around the altar once as a symbol of whom?","o":["The Twelve Apostles","Simeon the Elder","St. Mark","The Archangel Michael"],"a":1,"why":"They go around the altar once, as a symbol of Simeon the Elder, and the priest takes the Gospel from the deacon."},{"q":"Why are 2 candles lit and all the church lights turned on when the Gospel is read?","o":["So the reader can see better","To mark the end of the prayers","To show that the word of God is a lamp and a light","To welcome the people"],"a":2,"why":"\"Your word is a lamp to my feet and a light to my path.\" The lights show the word of God is a lamp and a light."},{"q":"Which of these is NOT one of the 5 short litanies after the Gospel?","o":["The Peace","The Pope","The Assemblies","The Departed"],"a":3,"why":"The 5 short litanies are the Peace, the Pope, the Place, the Waters/Plants/Air, and the Assemblies."},{"q":"Where does the priest stand to say the 5 short litanies?","o":["Behind the altar","In front of the door of the temple, with the censer in his hand","At the back of the church","In the middle of the church"],"a":1,"why":"The priest stands in front of the door of the temple and says the 5 short litanies with the censer in his hand (they can be said silently)."},{"q":"Which way does the priest face when he says the Absolution?","o":["East","West, toward the congregation","North","South"],"a":1,"why":"The priest says the absolution while facing the west (the congregation)."},{"q":"If it is an early prayer, what does the priest give the people at the end?","o":["The absolution to leave","The blessing only, and the liturgy follows","The Gospel to kiss and then they leave","Nothing"],"a":1,"why":"The absolution to leave is given if it is an evening prayer; for an early prayer, he gives the blessing only and follows with the liturgy."}];
+let QUIZ = QUIZ_EMBEDDED;
 
 const MARK='<div class="mark"><svg viewBox="0 0 100 56" aria-hidden="true">'+
  '<path d="M10 28 Q50 4 90 28 Q50 52 10 28 Z" fill="none" stroke="var(--brass)" stroke-width="2.5"/>'+
  '<path d="M30 28 L70 28" stroke="var(--brass)" stroke-width="2.5"/>'+
  '<ellipse cx="58" cy="28" rx="3" ry="5" fill="var(--brass)"/></svg></div>';
 
-let name="", step=-1, saved=false, picks=new Array(QUIZ.length).fill(null);
+let name="", step=-1, saved=false, picks=[];
 const app=document.getElementById('app');
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
@@ -216,6 +237,7 @@ function start(){
       '<p class="note">'+QUIZ.length+' questions. You get <b>one try</b>, so read each question carefully.<br>'+
       'You can go back and change an answer before you finish.</p>'+
       '<button class="teach" id="teach">Teacher</button>'+
+      '<p class="note stamp">Quiz version '+ACTIVE_BUILD+(whenOf(ACTIVE_BUILD)?' &middot; posted '+whenOf(ACTIVE_BUILD):'')+'</p>'+
     '</div>';
   const nm=document.getElementById('nm'), go=document.getElementById('go'), warn=document.getElementById('warn');
   const check=()=>{
@@ -296,9 +318,10 @@ function results(){
                 total:QUIZ.length,percent:Math.round(right/QUIZ.length*100),
                 missed:missed||"none",class:CLASS_LEVEL});
   }
-  const msg = right===10 ? "Perfect. Every single one."
-            : right>=Math.ceil(10*0.8) ? "Strong work. Read over the ones you missed and you have this."
-            : right>=Math.ceil(10*0.6) ? "A good start. Go back through the lesson on the ones below."
+  const pct = QUIZ.length ? Math.round(right/QUIZ.length*100) : 0;
+  const msg = pct===100 ? "Perfect. Every single one."
+            : pct>=80  ? "Strong work. Read over the ones you missed and you have this."
+            : pct>=60  ? "A good start. Go back through the lesson on the ones below."
             : "Read this lesson again and take it a second time. You will do better.";
   app.innerHTML=
     '<div class="crest">'+MARK+'<span class="eyebrow">St. Stephen Deacons School</span></div>'+
@@ -328,7 +351,50 @@ function results(){
   document.getElementById('prt').onclick=()=>window.print();
 }
 
-draw();
+// GitHub Pages sits behind a CDN that caches this page for 10 minutes AND
+// ignores the query string when deciding what is cached — so "index.html?v=new"
+// is served the same stale bytes as "index.html". That is why a freshly
+// published quiz could still show the old questions.
+//
+// The path, however, IS part of the cache key. So every publish also writes the
+// questions to q-<build>.js, a path the CDN has never served before and so
+// cannot have cached. The link the teacher hands out carries ?v=<build>; the
+// query is invisible to the CDN but perfectly visible to this script. If that
+// id is not the one baked into this copy, this copy is stale — go fetch the
+// real questions by their unique path.
+function boot(){
+  const wanted = (function(){
+    try { return new URLSearchParams(location.search).get('v'); } catch(e){ return null; }
+  })();
+
+  function go(){
+    STORE_KEY = STORE_BASE + "_" + ACTIVE_BUILD;
+    picks = new Array(QUIZ.length).fill(null);
+    draw();
+  }
+
+  if (!wanted || wanted === BUILD_ID) { go(); return; }
+
+  let settled = false;
+  function finish(){
+    if (settled) return;
+    settled = true;
+    const d = window.QUIZ_DATA;
+    if (d && Array.isArray(d.quiz) && d.quiz.length) {
+      QUIZ = d.quiz;
+      ACTIVE_BUILD = d.build || wanted;
+    }
+    go();
+  }
+
+  const sc = document.createElement('script');
+  sc.src = 'q-' + encodeURIComponent(wanted) + '.js';
+  sc.onload = finish;
+  sc.onerror = finish;          // fall back to the embedded questions
+  setTimeout(finish, 8000);     // and never leave a student on a blank page
+  document.head.appendChild(sc);
+}
+boot();
 </script>
 </body>
 </html>
